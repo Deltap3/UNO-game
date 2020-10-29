@@ -30,7 +30,9 @@ public class Player {
         do{
             System.out.println("Which card do you want to play ? (please enter his number before the []");
             System.out.println("If you can't play please type '-1' to draw a card");
-            playedCard = keyboard.nextInt();
+            do{
+                playedCard = keyboard.nextInt();
+            }while(playedCard < 0 || playedCard > hand.size()-1);
             if(playedCard == -1){
                 draw(g, 1);
                 stop = true;
