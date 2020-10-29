@@ -16,6 +16,7 @@ import java.util.Scanner;
  */
 public class Game {
     private int numberOfPlayers;
+    private int numberOfAI;
     private int nbDraw;
     private Card upperCard;
     private boolean reversed;
@@ -61,13 +62,16 @@ public class Game {
         return playerList.get(i);
     }
     public void setup(){
-        System.out.println("How many players are they for this game ? (2 players minumum and 10 maximum)");
-        System.out.println("Unlike the real game you can only play alone versus 1 to 9 AI");
+        System.out.println("How many human players are they for this game ? (1 players minumum and 10 maximum)");
         Scanner keyboard = new Scanner(System.in);
         do{
             numberOfPlayers = keyboard.nextInt();
-        }while(numberOfPlayers < 2 && numberOfPlayers > 10);
-        for(int i = 0; i < numberOfPlayers; ++i){
+        }while(numberOfPlayers > 1 && numberOfPlayers >= 10);
+        System.out.println("How many AI  are they for this game ? (0 AI minumum and 9 maximum)");
+        do{
+            numberOfAI = keyboard.nextInt();
+        }while(numberOfAI >0 && numberOfAI < 10);
+        for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
             playerList.add(new Player(i));
             for(int j = 0; j < 7; ++j){
                 playerList.get(i).draw(this,1);
@@ -100,7 +104,7 @@ public class Game {
         int i = 0;
         do{
             System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
-            if(i == 0)
+            if(i < numberOfPlayers)
                 playerWin = playerList.get(i).playTurnPlayer(this);
             else
                 AIwin = playerList.get(i).playTurnAI(this);
