@@ -20,6 +20,7 @@ public class Player {
         AInumber= nb;
     }
     public boolean playTurnPlayer(Game g){
+        System.out.println("It's Player" + (AInumber+1) + " turn");
         Scanner keyboard = new Scanner(System.in);
         int playedCard;
         for(int i = 0; i < hand.size(); ++i)
@@ -59,7 +60,7 @@ public class Player {
                 draw(g, 1);
                 stop = true;
                 play = false;
-                System.out.println("AI" + AInumber + " drew a card");
+                System.out.println("AI" + (AInumber+1) + " drew a card");
             }
             else
                 stop = hand.get(playedCard).canPlayOn(g.getUpperCard());
