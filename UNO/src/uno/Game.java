@@ -69,10 +69,14 @@ public class Game {
         do{
             numberOfPlayers = keyboard.nextInt();
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
-        System.out.println("How many AI  are they for this game ? (0 AI minumum and 9 maximum)");
-        do{
-            numberOfAI = keyboard.nextInt();
-        }while(numberOfAI < 0 || numberOfAI > 9);
+        int maxNumberOfAI=10-numberOfPlayers;
+        if(maxNumberOfAI>0)
+        {
+            System.out.println("How many AI  are they for this game ? (0 AI minumum and"+ maxNumberOfAI+"maximum)");
+            do{
+                numberOfAI = keyboard.nextInt();
+            }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
+        }
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
             playerList.add(new Player(i));
             for(int j = 0; j < 7; ++j){
