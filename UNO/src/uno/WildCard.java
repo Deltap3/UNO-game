@@ -51,7 +51,7 @@ public class WildCard implements Card{
         int choice;
         do{
             choice = keyboard.nextInt();
-        }while(choice < 1 && choice > 4);
+        }while(choice < 1 || choice > 4);
         newColour = choice;
         switch(newColour){
             case 1:

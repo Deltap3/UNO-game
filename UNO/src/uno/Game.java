@@ -47,6 +47,8 @@ public class Game {
             }
         }
         reversed = false;
+        drew = false;
+        skipped = false;
     }
     public void setUpperCard(Card upper){
         upperCard = upper;
@@ -66,11 +68,11 @@ public class Game {
         Scanner keyboard = new Scanner(System.in);
         do{
             numberOfPlayers = keyboard.nextInt();
-        }while(numberOfPlayers < 1 && numberOfPlayers > 10);
+        }while(numberOfPlayers < 1 || numberOfPlayers > 10);
         System.out.println("How many AI  are they for this game ? (0 AI minumum and 9 maximum)");
         do{
             numberOfAI = keyboard.nextInt();
-        }while(numberOfAI < 0 && numberOfAI > 9);
+        }while(numberOfAI < 0 || numberOfAI > 9);
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
             playerList.add(new Player(i));
             for(int j = 0; j < 7; ++j){
@@ -121,12 +123,12 @@ public class Game {
             }
             if(i < 0)
                 i = playerList.size()-1;
-            else if(i == playerList.size())
-                i = 0; 
-            else if(drew){
+            else if(i >= playerList.size())
+                i = 0;
+            if(drew){
                 playerList.get(i).draw(this,nbDraw);
                 draw(0);
-            }
+            }   
         }while(!AIwin && !playerWin);
         if(AIwin)
             System.out.println("\nThe AI won and you have lost");

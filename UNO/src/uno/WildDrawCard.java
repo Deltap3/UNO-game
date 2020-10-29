@@ -48,10 +48,10 @@ public class WildDrawCard implements Card{
         System.out.println("Choose a colour that will be the colour of this card");
         System.out.println("1 - Red ; 2 - Blue ; 3 - Green ; 4 - Yellow");
         Scanner keyboard = new Scanner(System.in);
-        int choice;
+        int choice = 0;
         do{
             choice = keyboard.nextInt();
-        }while(choice < 1 && choice > 4);
+        }while(choice < 1 || choice > 4);
         newColour = choice;
         switch(newColour){
             case 1:
@@ -67,6 +67,7 @@ public class WildDrawCard implements Card{
                 System.out.println("The new colour is Yellow");
                 break;
         }
+        g.draw(4);
     }
     public void play(Game g, int colour){
         newColour = colour;
