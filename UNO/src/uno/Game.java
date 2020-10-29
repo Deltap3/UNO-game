@@ -31,15 +31,10 @@ public class Game {
         for(int j = 1; j <= 4; ++j){
             deck.add(new NumberCard(j,'0'));
             for(int i = 0; i < 2; ++i){
-                deck.add(new NumberCard(j,'1'));
-                deck.add(new NumberCard(j,'2'));
-                deck.add(new NumberCard(j,'3'));
-                deck.add(new NumberCard(j,'4'));
-                deck.add(new NumberCard(j,'5'));
-                deck.add(new NumberCard(j,'6'));
-                deck.add(new NumberCard(j,'7'));
-                deck.add(new NumberCard(j,'8'));
-                deck.add(new NumberCard(j,'9'));
+                for(int k=1;k<10;k++)
+                {
+                    deck.add(new NumberCard(j, (char)k));
+                }
                 deck.add(new ReverseCard(j,'R'));
                 deck.add(new SkipCard(j,'S'));
                 deck.add(new DrawCard(j,'D'));
