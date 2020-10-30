@@ -72,7 +72,7 @@ public class Game {
         int maxNumberOfAI=10-numberOfPlayers;
         if(maxNumberOfAI>0)
         {
-            System.out.println("How many AI  are they for this game ? (0 AI minumum and"+ maxNumberOfAI+"maximum)");
+            System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
             do{
                 numberOfAI = keyboard.nextInt();
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);

@@ -80,7 +80,7 @@ public class Player {
                 card.play(g,r.nextInt((4 - 1)) + 1);
             }
             g.setUpperCard(hand.get(playedCard));
-            System.out.println("\nAI" + AInumber + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]");
+            System.out.println("\nAI" + (AInumber+1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]");
             
             hand.remove(playedCard);
         }
