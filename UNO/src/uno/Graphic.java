@@ -75,6 +75,7 @@ public class Graphic extends JFrame {
       {
          player.setChosenCard(btn.getCard());
          JOptionPane.showMessageDialog(null,"Played Card : " + player.getChosenCard().displayColour() + " " + player.getChosenCard().getSymbol());
+         
       }
    }
 }

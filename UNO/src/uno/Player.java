@@ -20,6 +20,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
+
 /**
  *
  * @author maist
@@ -58,8 +59,7 @@ public class Player {
         do{
         if (this.canPlay(g)) {
             System.out.println("Which card do you want to play ? ");
-            setChosenCard(cardChoice(g,this));
-            JOptionPane.showConfirmDialog(null, "T'es sur ?");
+            setChosenCard(cardChoice(g));
             stop=true;
             System.out.println("you chose your card");
         } 
@@ -145,8 +145,21 @@ public class Player {
     public int getNumber(){
         return AInumber;
     }
-    public Card cardChoice(final Game g, Player play) {
-        Graphic graph = new Graphic(g,play);
-        return play.getChosenCard();
+    public Card cardChoice(final Game g) {
+        Card prev =this.getChosenCard();
+        
+            Graphic graph = new Graphic(g,this);
+            do{
+            try
+            {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }while(prev==this.getChosenCard());
+            graph.dispose();
+        return this.getChosenCard();
     }
 }
