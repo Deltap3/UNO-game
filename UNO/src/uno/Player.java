@@ -14,6 +14,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
@@ -24,19 +26,24 @@ import javax.swing.SwingUtilities;
  */
 public class Player {
 
-    private ArrayList<Card> hand = new ArrayList<Card>();
+    private ArrayList<Card> hand;
     private int AInumber;
     private Card chosenCard;
-    JFrame buttonFrame;
-
     public Player(int nb) {
         AInumber = nb;
         chosenCard = null;
+        hand = new ArrayList<Card>();
     }
-
+    public ArrayList<Card> getHand(){
+        return hand;
+    }
     public void setChosenCard(Card newChosenCard)
     {
         chosenCard=newChosenCard;
+    }
+    public Card getChosenCard()
+    {
+        return chosenCard;
     }
     public boolean playTurnPlayer(Game g) {
         System.out.println("It's Player" + (AInumber + 1) + " turn");
@@ -51,12 +58,10 @@ public class Player {
         do{
         if (this.canPlay(g)) {
             System.out.println("Which card do you want to play ? ");
-            cardChoice(g);
-            if(chosenCard.canPlayOn(g.getUpperCard()))
-                stop=true;
-            
+            setChosenCard(cardChoice(g,this));
+            JOptionPane.showConfirmDialog(null, "T'es sur ?");
+            stop=true;
             System.out.println("you chose your card");
-
         } 
         else {
             draw(g, 1);
@@ -65,7 +70,7 @@ public class Player {
 
         }
         }while(!stop);
-
+        
         if (play) {
             chosenCard.play(g);
             g.setUpperCard(chosenCard);
@@ -137,73 +142,11 @@ public class Player {
 
         return possible;
     }
-
-    public void cardChoice(final Game g) {
-        //SwingUtilities.invokeLater(new Runnable() {
-         //   public void run() {
-        Card prevChosenCard=chosenCard;
-        
-                ArrayList<MyButton> myButtons=new ArrayList<>();
-                ButtonGroup group= new ButtonGroup();
-                buttonFrame = new JFrame("votre choix :");
-                buttonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                buttonFrame.setLayout(new FlowLayout());
-                ButtonListener listener = new ButtonListener();
-
-                for (Card card : hand) {
-                    if (card.canPlayOn(g.getUpperCard())) {
-                        MyButton btn = new MyButton(card);
-                        btn.addActionListener(listener);
-                        
-                        group.add(btn);
-                        buttonFrame.add(btn);
-                        myButtons.add(btn);
-                        
-                    } 
-                }
-                JToggleButton okButton= new JToggleButton ("OK");
-                okButton.addActionListener(listener);
-                buttonFrame.add(okButton);
-                buttonFrame.pack();
-                buttonFrame.setLocationByPlatform(true);
-                buttonFrame.setVisible(true);
-            /*  
-           do{     
-               //System.out.println("in the do while");
-                if(okButton.isSelected())
-                {
-                    System.out.println("ok is selected");
-                    for(MyButton btn: myButtons)
-                    {
-                        if(btn.isSelected())
-                        {
-                            System.out.println("changing selected card");
-                            chosenCard=btn.getCard();
-                            System.out.println("color: "+chosenCard.getColour());
-                            System.out.println("symbol: "+chosenCard.getSymbol());
-                        }
-
-                    } 
-                }
-           }while((chosenCard==prevChosenCard) && (!okButton.isSelected()));
-                    */
-            //}
-        //});
-                   
-
+    public int getNumber(){
+        return AInumber;
     }
-
-    //internal class definition
-    public class ButtonListener implements ActionListener {
-        
-        
-        public void actionPerformed(ActionEvent e) {
-            
-            
-            System.out.println("button selected");
-            
-
-        }
+    public Card cardChoice(final Game g, Player play) {
+        Graphic graph = new Graphic(g,play);
+        return play.getChosenCard();
     }
-
 }

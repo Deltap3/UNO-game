@@ -16,14 +16,11 @@ import javax.swing.JRadioButton;
  * @author Juju
  */
 public class MyButton extends JRadioButton{
-    
     private Card buttonCard;
-    
-
-    
     public MyButton(Card myCard)
     {
         super(""+myCard.getSymbol());
+        buttonCard = myCard;
         int col=myCard.getColour();
             switch(col)
             {
@@ -50,7 +47,6 @@ public class MyButton extends JRadioButton{
           this.setForeground(Color.white);
           this.setOpaque(true);
     }
-    
     public Card getCard()
     {
         return buttonCard;
