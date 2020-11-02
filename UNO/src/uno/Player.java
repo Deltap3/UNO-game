@@ -29,14 +29,25 @@ public class Player {
 
     private ArrayList<Card> hand;
     private int AInumber;
+    private int score;
     private Card chosenCard;
+    
     public Player(int nb) {
         AInumber = nb;
         chosenCard = null;
         hand = new ArrayList<Card>();
+        score=0;
     }
     public ArrayList<Card> getHand(){
         return hand;
+    }
+    public void setScore(int newScore)
+    {
+        score=newScore;
+    }
+    public int getScore()
+    {
+        return score;
     }
     public void setChosenCard(Card newChosenCard)
     {
@@ -64,6 +75,7 @@ public class Player {
             System.out.println("you chose your card");
         } 
         else {
+            JOptionPane.showMessageDialog(null, "You draw a card");
             draw(g, 1);
             play = false;
             stop =true;
@@ -73,6 +85,7 @@ public class Player {
         
         if (play) {
             chosenCard.play(g);
+            g.returnToDeck(g.getUpperCard());
             g.setUpperCard(chosenCard);
             hand.remove(chosenCard);
         }
@@ -94,6 +107,7 @@ public class Player {
                 draw(g, 1);
                 stop = true;
                 play = false;
+                JOptionPane.showMessageDialog(null, "AI" + (AInumber + 1) + " drew a card");
                 System.out.println("AI" + (AInumber + 1) + " drew a card");
             } else {
                 stop = hand.get(playedCard).canPlayOn(g.getUpperCard());
@@ -110,6 +124,7 @@ public class Player {
                 WildCard card = (WildCard) hand.get(playedCard);
                 card.play(g, r.nextInt((4 - 1)) + 1);
             }
+            g.returnToDeck(g.getUpperCard());
             g.setUpperCard(hand.get(playedCard));
             System.out.println("\nAI" + (AInumber + 1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]");
 

@@ -5,6 +5,8 @@
  */
 package uno;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author maist
@@ -49,5 +51,6 @@ public class ReverseCard implements Card{
     }
     public void play(Game g){
         g.reverse();
+        JOptionPane.showMessageDialog(null, "playing order has been reversed");
     }
 }

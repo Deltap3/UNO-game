@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,31 +64,47 @@ public class Game {
     public Player getPLayer(int i){
         return playerList.get(i);
     }
-    public void setup(){
-        System.out.println("How many human players are they for this game ? (1 players minumum and 10 maximum)");
-        Scanner keyboard = new Scanner(System.in);
+    public void playersSetUp()
+    {
+        String str;
+        //System.out.println("How many human players are they for this game ? (1 players minumum and 10 maximum)");
+        //Scanner keyboard = new Scanner(System.in);
         do{
-            numberOfPlayers = keyboard.nextInt();
+            str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
+            numberOfPlayers = Integer.parseInt(str);
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
+        
         int maxNumberOfAI=10-numberOfPlayers;
         if(maxNumberOfAI>0)
         {
-            System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
+            //System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
             do{
-                numberOfAI = keyboard.nextInt();
+                str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
+                numberOfAI = Integer.parseInt(str);
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
         }
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
             playerList.add(new Player(i));
+        }
+    }
+    public void setup(){
+       //deals the cards
+        for(int i = 0; i < playerList.size(); ++i){
             for(int j = 0; j < 7; ++j){
                 playerList.get(i).draw(this,1);
             }
         }
+        //set up the first up front card
         drawInitialCard();
     }
     public ArrayList<Card> getDeck(){
         return deck;
     }
+    public void returnToDeck(Card usedCard)
+    {
+        deck.add(usedCard);
+    }
+    
     private void drawInitialCard(){
         int i = 0;
         while(deck.get(i).getSymbol() == 'W' || deck.get(i).getSymbol() == '+')
@@ -95,6 +112,7 @@ public class Game {
         upperCard = deck.get(i);
         deck.remove(i);
     }
+    
     public void reverse(){
         reversed = !reversed;
     }
@@ -109,11 +127,22 @@ public class Game {
         boolean AIwin = false,playerWin = false;
         int i = 0;
         do{
-            System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
+            JOptionPane.showMessageDialog(null, "Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
+            //System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
             if(i < numberOfPlayers)
+            {
                 playerWin = playerList.get(i).playTurnPlayer(this);
+                if(playerWin)
+                    playerList.get(i).setScore(playerList.get(i).getScore()+100);
+            }
+                
             else
+            {
                 AIwin = playerList.get(i).playTurnAI(this);
+                if(AIwin)
+                    playerList.get(i).setScore(playerList.get(i).getScore()+100);
+            }
+                
             if(reversed)
                 i--;
             else
@@ -130,13 +159,39 @@ public class Game {
             else if(i >= playerList.size())
                 i = 0;
             if(drew){
+                JOptionPane.showMessageDialog(null, "player "+i+" will draw "+nbDraw+" cards");
                 playerList.get(i).draw(this,nbDraw);
                 draw(0);
             }   
         }while(!AIwin && !playerWin);
         if(AIwin)
-            System.out.println("\nThe AI won and you have lost");
+            JOptionPane.showMessageDialog(null,"\nThe AI won and you have lost");
         else 
-            System.out.println("\nCongratulations you have won !");
+            JOptionPane.showMessageDialog(null, "\nCongratulations you have won !");
+        
+        
+    }
+    public void afterGame()
+    {
+        for (Player play : playerList) {
+           for(Card leftoverCard :play.getHand())
+           {
+               deck.add(leftoverCard);
+           }
+           play.getHand().clear();
+           play.setChosenCard(null);
+        }
+    }
+    
+    public void displayScores()
+    {
+        String str="Score board: ";
+        for(int i=0;i<playerList.size();i++)
+        {
+            str+="player "+i+" : "+playerList.get(i).getScore()+"\n";
+        }
+        
+        JOptionPane.showMessageDialog(null, str);
+        
     }
 }

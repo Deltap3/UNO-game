@@ -6,7 +6,7 @@
 package uno;
 
 import java.util.Scanner;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author maist
@@ -45,12 +45,13 @@ public class WildCard implements Card{
         return "";
     }
     public void play(Game g){
-        System.out.println("Choose a colour that will be the colour of this card");
-        System.out.println("1 - Red ; 2 - Blue ; 3 - Green ; 4 - Yellow");
-        Scanner keyboard = new Scanner(System.in);
+        
+        String str;
         int choice;
         do{
-            choice = keyboard.nextInt();
+            str=JOptionPane.showInputDialog("Call the next color: \n"+
+                "1 - Red ; 2 - Blue ; 3 - Green ; 4 - Yellow");
+            choice = Integer.parseInt(str);
         }while(choice < 1 || choice > 4);
         newColour = choice;
         switch(newColour){
