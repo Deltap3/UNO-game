@@ -5,6 +5,7 @@
  */
 package uno;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ import javax.swing.JTextField;
  */
 public class Graphic extends JFrame {
    private JPanel panel;
-   private JLabel messageLabel;
+   private JLabel messageUpperCard;
+   private JLabel message;
    private Card chosenCard;
    private final int WINDOW_WIDTH = 400;
    private final int WINDOW_HEIGHT = 100;
@@ -46,7 +48,7 @@ public class Graphic extends JFrame {
    }
    private void buildPanel(Game g, Player play)
    {
-      messageLabel = new JLabel("Your Choice");
+      messageUpperCard = new JLabel("Upper Card : [" + g.getUpperCard().displayColour() + g.getUpperCard().getSymbol() + "]");
       Card prevChosenCard = play.getChosenCard();
       ArrayList<MyButton> myButtons=new ArrayList<>();
       ButtonGroup group = new ButtonGroup();
@@ -59,9 +61,11 @@ public class Graphic extends JFrame {
             myButtons.add(btn);
         } 
       }
-      panel = new JPanel();
+      panel = new JPanel(); 
+      panel.add(messageUpperCard);
       for(int i = 0; i < myButtons.size(); ++i)
           panel.add(myButtons.get(i));
+     
    }
    private class RadioButtonListener implements ActionListener
    {
@@ -74,8 +78,6 @@ public class Graphic extends JFrame {
       public void actionPerformed(ActionEvent e)
       {
          player.setChosenCard(btn.getCard());
-         JOptionPane.showMessageDialog(null,"Played Card : " + player.getChosenCard().displayColour() + " " + player.getChosenCard().getSymbol());
-         
       }
    }
 }

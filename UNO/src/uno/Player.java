@@ -7,18 +7,7 @@ package uno;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
-import javax.swing.SwingUtilities;
 
 
 /**
@@ -71,8 +60,9 @@ public class Player {
         if (this.canPlay(g)) {
             System.out.println("Which card do you want to play ? ");
             setChosenCard(cardChoice(g));
+            JOptionPane.showMessageDialog(null,"Played Card : " + getChosenCard().displayColour() + " " + getChosenCard().getSymbol());
             stop=true;
-            System.out.println("you chose your card");
+            System.out.println("You chose your card");
         } 
         else {
             JOptionPane.showMessageDialog(null, "You draw a card");
@@ -130,7 +120,7 @@ public class Player {
 
             hand.remove(playedCard);
         }
-        System.out.println("AI" + AInumber + " got " + hand.size() + " cards in his hand\n");
+        System.out.println("AI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
         counter = 0;
         if (hand.size() == 0) {
             return true;

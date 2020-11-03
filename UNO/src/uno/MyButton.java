@@ -26,25 +26,28 @@ public class MyButton extends JRadioButton{
             {
                 case 1: //red
                    this.setBackground(Color.RED);
+                   this.setForeground(Color.WHITE);
                    break;
                     
                 case 2: //blue
                     this.setBackground(Color.BLUE);
+                    this.setForeground(Color.WHITE);
                     break;
                     
                 case 3: //green
                     this.setBackground(Color.GREEN);
+                    this.setForeground(Color.BLACK);
                     break;
                     
                 case 4: //yellow
                     this.setBackground(Color.YELLOW);
+                    this.setForeground(Color.BLACK);
                     break;
                     
                 case 0: //wild card
                     this.setBackground(Color.BLACK);
+                    this.setForeground(Color.WHITE);
             }
-            
-          this.setForeground(Color.white);
           this.setOpaque(true);
     }
     public Card getCard()

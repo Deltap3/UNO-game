@@ -141,8 +141,7 @@ public class Game {
                 AIwin = playerList.get(i).playTurnAI(this);
                 if(AIwin)
                     playerList.get(i).setScore(playerList.get(i).getScore()+100);
-            }
-                
+            } 
             if(reversed)
                 i--;
             else
@@ -153,13 +152,17 @@ public class Game {
                 else
                     i++;
                 skip();
+                
             }
             if(i < 0)
                 i = playerList.size()-1;
             else if(i >= playerList.size())
                 i = 0;
             if(drew){
-                JOptionPane.showMessageDialog(null, "player "+i+" will draw "+nbDraw+" cards");
+                if(playerList.get(i).getNumber() < numberOfPlayers)
+                    JOptionPane.showMessageDialog(null, "Player "+ (i+1) +" will draw "+nbDraw+" cards");
+                else
+                    JOptionPane.showMessageDialog(null, "AI "+ (i+1) +" will draw "+nbDraw+" cards");
                 playerList.get(i).draw(this,nbDraw);
                 draw(0);
             }   

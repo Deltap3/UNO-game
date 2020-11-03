@@ -51,6 +51,6 @@ public class ReverseCard implements Card{
     }
     public void play(Game g){
         g.reverse();
-        JOptionPane.showMessageDialog(null, "playing order has been reversed");
+        JOptionPane.showMessageDialog(null, "Playing order has been reversed");
     }
 }
