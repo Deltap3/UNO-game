@@ -6,6 +6,10 @@
 package uno;
 
 //import java.util.Scanner;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 /**
  *
@@ -19,9 +23,19 @@ public class WildCard implements Card{
     private final int myColour;
     private final char mySymbol;
     private int newColour;
-    public WildCard(int myColour, char mySymbol) {
+    private BufferedImage pic=null;
+    
+    public WildCard()
+    {
+        this.myColour=0;
+        this.mySymbol= 'W';
+        loadImage("wild.jpg");
+        
+    }
+    public WildCard(int myColour, char mySymbol, String name) {
         this.myColour = myColour;
         this.mySymbol = mySymbol;
+        loadImage(name);
     }
     public boolean canPlayOn(Card c){
         return true;
@@ -36,17 +50,18 @@ public class WildCard implements Card{
         return newColour;
     }
     public String displayColour(){
-        switch(myColour){
-            case 1:
-                return "Red";
-            case 2:
-                return "Blue";
-            case 3:
-                return "Green";
-            case 4:
-                return "Yellow";
-        }
+        
         return "";
+    }
+    private void loadImage(String name)
+    {
+        try{
+        pic= ImageIO.read(new File("pictures/"+name));
+        }
+        catch (IOException e) {
+            
+            System.out.println("couldn't load image "+name);
+        }
     }
     public void play(Game g){
         

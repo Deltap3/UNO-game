@@ -5,6 +5,11 @@
  */
 package uno;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author maist
@@ -14,9 +19,23 @@ package uno;
 public class NumberCard implements Card{
     private int myColour;
     private char mySymbol;
+    private BufferedImage pic=null;
+    
     public NumberCard(int myColour, char mySymbol) {
         this.myColour = myColour;
         this.mySymbol = mySymbol;
+        System.out.println(""+String.valueOf(mySymbol)+myColour);
+        loadImage();
+    }
+    private void loadImage()
+    {
+        String name=""+String.valueOf(mySymbol)+myColour+".jpg";
+        try{
+        pic= ImageIO.read(new File("pictures/"+name));
+        }
+        catch (IOException e) {
+            System.out.println("couldn't load image "+name);
+        }
     }
     public boolean canPlayOn(Card c){
         if(c.getSymbol() == 'W'){

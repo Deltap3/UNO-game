@@ -19,7 +19,7 @@ public class WildDrawCard extends WildCard{
 
     
     public WildDrawCard() {
-        super(0,'+');
+        super(0,'+',"draw4.jpg");
     }
 
 

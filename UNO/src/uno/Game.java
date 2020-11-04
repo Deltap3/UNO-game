@@ -27,7 +27,7 @@ public class Game {
     private ArrayList<Card> deck = new ArrayList<Card>();
     public Game() {
         for(int i = 0; i < 4; ++i)
-            deck.add(new WildCard(0,'W'));
+            deck.add(new WildCard());
         for(int i = 0; i < 4; ++i)
             deck.add(new WildDrawCard());
         for(int j = 1; j <= 4; ++j){
@@ -36,7 +36,8 @@ public class Game {
                 
                 for(int k=1;k<10;k++)
                 {
-                   deck.add(new NumberCard(j,(char)k)); 
+                    char symbol=(char)(k+'0');
+                   deck.add(new NumberCard(j,symbol)); 
                 }
                 
                 deck.add(new ReverseCard(j,'R'));
@@ -185,7 +186,7 @@ public class Game {
     
     public void displayScores()
     {
-        String str="Score board: ";
+        String str="Score board: \n";
         for(int i=0;i<playerList.size();i++)
         {
             str+="player "+i+" : "+playerList.get(i).getScore()+"\n";
