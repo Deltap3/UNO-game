@@ -116,11 +116,11 @@ public class Player {
             }
             g.returnToDeck(g.getUpperCard());
             g.setUpperCard(hand.get(playedCard));
-            System.out.println("\nAI" + (AInumber + 1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]");
-
+            JOptionPane.showMessageDialog(null,"\nAI" + (AInumber + 1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]"
+            +"\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
             hand.remove(playedCard);
         }
-        System.out.println("AI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
+        System.out.println("\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
         counter = 0;
         if (hand.size() == 0) {
             return true;

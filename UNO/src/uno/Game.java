@@ -196,7 +196,10 @@ public class Game {
         String str="Score board: \n";
         for(int i=0;i<playerList.size();i++)
         {
-            str+="player "+i+" : "+playerList.get(i).getScore()+"\n";
+            if(i < numberOfPlayers)
+                str+="Player "+(i+1)+" : "+playerList.get(i).getScore()+"\n";
+            else
+                str+="AI "+(i+1)+" : "+playerList.get(i).getScore()+"\n";
         }
         
         JOptionPane.showMessageDialog(null, str);
