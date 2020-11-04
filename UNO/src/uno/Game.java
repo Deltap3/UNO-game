@@ -36,10 +36,11 @@ public class Game {
                 
                 for(int k=1;k<10;k++)
                 {
+
                     char symbol=(char)(k+'0');
                    deck.add(new NumberCard(j,symbol)); 
+
                 }
-                
                 deck.add(new ReverseCard(j,'R'));
                 deck.add(new SkipCard(j,'S'));
                 deck.add(new DrawCard(j,'D'));
@@ -70,6 +71,8 @@ public class Game {
         do{
             str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
             numberOfPlayers = Integer.parseInt(str);
+            if(numberOfPlayers < 1 || numberOfPlayers > 10)
+                throw new Error("Can't have this number of players");
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
         
         int maxNumberOfAI=10-numberOfPlayers;
@@ -79,6 +82,8 @@ public class Game {
             do{
                 str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
                 numberOfAI = Integer.parseInt(str);
+                if(numberOfAI < 1 || numberOfAI > 10)
+                    throw new Error("Can't have this number of AI");
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
         }
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
