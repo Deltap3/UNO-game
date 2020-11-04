@@ -9,6 +9,8 @@ package uno;
  *
  * @author maist
  */
+//"basic" card class
+//has no special effect when played
 public class NumberCard implements Card{
     private int myColour;
     private char mySymbol;

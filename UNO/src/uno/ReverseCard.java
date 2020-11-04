@@ -11,44 +11,16 @@ import javax.swing.JOptionPane;
  *
  * @author maist
  */
-public class ReverseCard implements Card{
-    private int myColour;
-    private char mySymbol;
+//a reverse card is a numbercard that
+//can reverse the playing order
+public class ReverseCard extends NumberCard{
+
     public ReverseCard(int myColour, char mySymbol) {
-        this.myColour = myColour;
-        this.mySymbol = mySymbol;
+        super(myColour,mySymbol);
     }
-    public boolean canPlayOn(Card c){
-        if(c.getSymbol() == 'W'){
-            WildCard card = (WildCard)c;
-            return myColour == card.getNewColour();
-        }
-        else if(c.getSymbol() == '+'){
-            WildDrawCard card = (WildDrawCard)c;
-            return myColour == card.getNewColour();
-        }   
-        else
-            return c.getSymbol() == 'R' || myColour == c.getColour();
-    }
-    public int getColour(){
-        return myColour;
-    }
-    public char getSymbol(){
-        return mySymbol;
-    }
-    public String displayColour(){
-        switch(myColour){
-            case 1:
-                return "Red";
-            case 2:
-                return "Blue";
-            case 3:
-                return "Green";
-            case 4:
-                return "Yellow";
-        }
-        return "";
-    }
+
+
+    @Override
     public void play(Game g){
         g.reverse();
         JOptionPane.showMessageDialog(null, "Playing order has been reversed");

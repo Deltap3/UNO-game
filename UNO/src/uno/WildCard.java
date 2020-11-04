@@ -5,15 +5,19 @@
  */
 package uno;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 import javax.swing.JOptionPane;
 /**
  *
  * @author maist
  */
+//a wild card is a special card 
+//that can be played on any card
+//and can change the active color
+//of the game
 public class WildCard implements Card{
-    private int myColour;
-    private char mySymbol;
+    private final int myColour;
+    private final char mySymbol;
     private int newColour;
     public WildCard(int myColour, char mySymbol) {
         this.myColour = myColour;

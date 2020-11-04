@@ -9,44 +9,17 @@ package uno;
  *
  * @author maist
  */
-public class DrawCard implements Card{
-    private int myColour;
-    private char mySymbol;
+//a draw card is a "basic" card with
+//a special effect of making the next player
+//draw 2 cards
+public class DrawCard extends NumberCard{
+
     public DrawCard(int myColour, char mySymbol) {
-        this.myColour = myColour;
-        this.mySymbol = mySymbol;
+        super(myColour, mySymbol);
+        
     }
-    public boolean canPlayOn(Card c){
-        if(c.getSymbol() == 'W'){
-            WildCard card = (WildCard)c;
-            return myColour == card.getNewColour();
-        }
-        else if(c.getSymbol() == '+'){
-            WildDrawCard card = (WildDrawCard)c;
-            return myColour == card.getNewColour();
-        }   
-        else
-            return c.getSymbol() == 'D' || myColour == c.getColour();
-    }
-    public int getColour(){
-        return myColour;
-    }
-    public char getSymbol(){
-        return mySymbol;
-    }
-    public String displayColour(){
-        switch(myColour){
-            case 1:
-                return "Red";
-            case 2:
-                return "Blue";
-            case 3:
-                return "Green";
-            case 4:
-                return "Yellow";
-        }
-        return "";
-    }
+    
+    @Override
     public void play(Game g){
         g.draw(2);
     }
