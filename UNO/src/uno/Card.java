@@ -5,6 +5,8 @@
  */
 package uno;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author maist
@@ -13,6 +15,7 @@ public interface Card {
     public int getColour();
     public char getSymbol();
     public String displayColour();
+    public BufferedImage getPicture();
     public boolean canPlayOn(Card card);
     public void play(Game g);
 }

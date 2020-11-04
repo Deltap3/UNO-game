@@ -129,11 +129,13 @@ public class Game {
     public void start(){
         boolean AIwin = false,playerWin = false;
         int i = 0;
+        
         do{
             JOptionPane.showMessageDialog(null, "Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
             //System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
             if(i < numberOfPlayers)
             {
+                
                 playerWin = playerList.get(i).playTurnPlayer(this);
                 if(playerWin)
                     playerList.get(i).setScore(playerList.get(i).getScore()+100);
@@ -200,4 +202,5 @@ public class Game {
         JOptionPane.showMessageDialog(null, str);
         
     }
+    
 }

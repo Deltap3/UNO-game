@@ -55,6 +55,10 @@ public class NumberCard implements Card{
     public char getSymbol(){
         return mySymbol;
     }
+    public BufferedImage getPicture()
+    {
+        return pic;
+    }
     public String displayColour(){
         switch(myColour){
             case 1:

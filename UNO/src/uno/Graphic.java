@@ -5,6 +5,8 @@
  */
 package uno;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,19 +20,23 @@ import javax.swing.JPanel;
  * @author maist
  */
 public class Graphic extends JFrame {
-   private JPanel panel;
-   private JLabel messageUpperCard;
+   private JPanel buttonPanel;
+   private ImagePanel imagePanel;
    private JLabel message;
    private Card chosenCard;
-   private final int WINDOW_WIDTH = 400;
-   private final int WINDOW_HEIGHT = 100;
+   private final int WINDOW_WIDTH = 1200;
+   private final int WINDOW_HEIGHT = 1400;
    public Graphic(Game g, Player play)
    {
       setTitle("Player" + (play.getNumber()+1) + " turn");
-      setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+      setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      buildPanel(g,play);
-      add(panel);
+      imagePanel=new ImagePanel(g, play);
+      buildButtonPanel(g,play);
+      this.setLayout(new BorderLayout());
+      add(imagePanel, BorderLayout.CENTER);
+      add(buttonPanel, BorderLayout.EAST);
+      pack();
       setVisible(true);
    }
    public void setChosenCard(Card card){
@@ -39,9 +45,9 @@ public class Graphic extends JFrame {
    public Card getChosenCard(){
        return chosenCard;
    }
-   private void buildPanel(Game g, Player play)
+   private void buildButtonPanel(Game g, Player play)
    {
-      messageUpperCard = new JLabel("Upper Card : [" + g.getUpperCard().displayColour() + g.getUpperCard().getSymbol() + "]");
+     
       Card prevChosenCard = play.getChosenCard();
       ArrayList<MyButton> myButtons=new ArrayList<>();
       ButtonGroup group = new ButtonGroup();
@@ -54,10 +60,10 @@ public class Graphic extends JFrame {
             myButtons.add(btn);
         } 
       }
-      panel = new JPanel(); 
-      panel.add(messageUpperCard);
+      buttonPanel = new JPanel(); 
+      //buttonPanel.add(messageUpperCard);
       for(int i = 0; i < myButtons.size(); ++i)
-          panel.add(myButtons.get(i));
+          buttonPanel.add(myButtons.get(i));
      
    }
    private class RadioButtonListener implements ActionListener

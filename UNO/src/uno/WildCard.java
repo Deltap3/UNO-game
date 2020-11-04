@@ -53,6 +53,10 @@ public class WildCard implements Card{
         
         return "";
     }
+    public BufferedImage getPicture()
+    {
+        return pic;
+    }
     private void loadImage(String name)
     {
         try{
