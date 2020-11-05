@@ -70,6 +70,7 @@ public class Game {
         //Scanner keyboard = new Scanner(System.in);
         do{
             try{
+
             str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
             if(str.isEmpty())
                 throw new IllegalArgumentException("please enter the number of players");
@@ -80,6 +81,7 @@ public class Game {
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null, e.getMessage(),"",JOptionPane.ERROR_MESSAGE);
+
             }
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
         
@@ -89,6 +91,7 @@ public class Game {
             //System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
             do{
                 try{
+
                 str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
                 if(str.isEmpty())
                     throw new IllegalArgumentException("please enter the number of AI");
@@ -100,6 +103,7 @@ public class Game {
                 {
                     JOptionPane.showMessageDialog(null, e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
                 }
+
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
         }
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
