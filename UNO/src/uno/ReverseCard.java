@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ReverseCard extends NumberCard{
 
     public ReverseCard(int myColour, char mySymbol) {
-        super(myColour,mySymbol);
+        super(myColour,mySymbol,20);
     }
 
 

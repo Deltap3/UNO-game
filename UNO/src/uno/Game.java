@@ -31,14 +31,14 @@ public class Game {
         for(int i = 0; i < 4; ++i)
             deck.add(new WildDrawCard());
         for(int j = 1; j <= 4; ++j){
-            deck.add(new NumberCard(j,'0'));
+            deck.add(new NumberCard(j,'0',0));
             for(int i = 0; i < 2; ++i){
                 
                 for(int k=1;k<10;k++)
                 {
 
                     char symbol=(char)(k+'0');
-                   deck.add(new NumberCard(j,symbol)); 
+                   deck.add(new NumberCard(j,symbol,k)); 
 
                 }
                 deck.add(new ReverseCard(j,'R'));
@@ -158,14 +158,14 @@ public class Game {
                 
                 playerWin = playerList.get(i).playTurnPlayer(this);
                 if(playerWin)
-                    playerList.get(i).setScore(playerList.get(i).getScore()+100);
+                    playerList.get(i).setScore(playerList.get(i).getScore()+computeScore());
             }
                 
             else
             {
                 AIwin = playerList.get(i).playTurnAI(this);
                 if(AIwin)
-                    playerList.get(i).setScore(playerList.get(i).getScore()+100);
+                    playerList.get(i).setScore(playerList.get(i).getScore()+computeScore());
             } 
             if(reversed)
                 i--;
@@ -210,7 +210,15 @@ public class Game {
            play.setChosenCard(null);
         }
     }
-    
+    public int computeScore()
+    {
+        int total=0;
+        for(Player p: playerList)
+        {
+            total+=p.computeHandScore();
+        }
+        return total;
+    }
     public void displayScores()
     {
         String str="Score board: \n";

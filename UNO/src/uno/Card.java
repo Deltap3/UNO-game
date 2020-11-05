@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 public interface Card {
     public int getColour();
     public char getSymbol();
+    public int getValue();
     public String displayColour();
     public BufferedImage getPicture();
     public boolean canPlayOn(Card card);

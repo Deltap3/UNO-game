@@ -18,12 +18,14 @@ import javax.imageio.ImageIO;
 //has no special effect when played
 public class NumberCard implements Card{
     private int myColour;
+    private int cardValue;
     private char mySymbol;
     private BufferedImage pic=null;
     
-    public NumberCard(int myColour, char mySymbol) {
+    public NumberCard(int myColour, char mySymbol, int value) {
         this.myColour = myColour;
         this.mySymbol = mySymbol;
+        this.cardValue= value;
         System.out.println(""+String.valueOf(mySymbol)+myColour);
         loadImage();
     }
@@ -54,6 +56,10 @@ public class NumberCard implements Card{
     }
     public char getSymbol(){
         return mySymbol;
+    }
+    public int getValue()
+    {
+        return cardValue;
     }
     public BufferedImage getPicture()
     {

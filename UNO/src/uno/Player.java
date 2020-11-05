@@ -167,4 +167,13 @@ public class Player {
             graph.dispose();
         return this.getChosenCard();
     }
+    public int computeHandScore()
+    {
+        int handScore=0;
+        for(Card c: hand)
+        {
+            handScore+=c.getValue();
+        }
+        return handScore;
+    }
 }

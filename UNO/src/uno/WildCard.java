@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 public class WildCard implements Card{
     private final int myColour;
     private final char mySymbol;
+    private int cardValue;
     private int newColour;
     private BufferedImage pic=null;
     
@@ -30,12 +31,14 @@ public class WildCard implements Card{
     {
         this.myColour=0;
         this.mySymbol= 'W';
+        this.cardValue=50;
         loadImage("wild.jpg");
         
     }
     public WildCard(int myColour, char mySymbol, String name) {
         this.myColour = myColour;
         this.mySymbol = mySymbol;
+        this.cardValue=50;
         loadImage(name);
     }
     public boolean canPlayOn(Card c){
@@ -46,6 +49,10 @@ public class WildCard implements Card{
     }
     public char getSymbol(){
         return mySymbol;
+    }
+    public int getValue()
+    {
+        return cardValue;
     }
     public int getNewColour(){
         return newColour;

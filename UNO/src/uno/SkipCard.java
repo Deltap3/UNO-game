@@ -15,7 +15,7 @@ public class SkipCard extends NumberCard{
 
     
     public SkipCard(int myColour, char mySymbol) {
-        super(myColour,mySymbol);
+        super(myColour,mySymbol,20);
     }
 
 

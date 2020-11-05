@@ -15,7 +15,7 @@ package uno;
 public class DrawCard extends NumberCard{
 
     public DrawCard(int myColour, char mySymbol) {
-        super(myColour, mySymbol);
+        super(myColour, mySymbol,20);
         
     }
     
