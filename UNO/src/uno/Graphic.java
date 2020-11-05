@@ -6,6 +6,7 @@
 package uno;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,6 @@ import javax.swing.JPanel;
 public class Graphic extends JFrame {
    private JPanel buttonPanel;
    private ImagePanel imagePanel;
-   private JLabel message;
    private Card chosenCard;
    private final int WINDOW_WIDTH = 1200;
    private final int WINDOW_HEIGHT = 1400;
@@ -31,9 +31,11 @@ public class Graphic extends JFrame {
       setTitle("Player" + (play.getNumber()+1) + " turn");
       setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setBackground(Color.WHITE);
       imagePanel=new ImagePanel(g, play);
       buildButtonPanel(g,play);
       this.setLayout(new BorderLayout());
+      add(new JLabel("Player" + (play.getNumber()+1) + " turn"),BorderLayout.NORTH);
       add(imagePanel, BorderLayout.CENTER);
       add(buttonPanel, BorderLayout.EAST);
       pack();
@@ -61,7 +63,7 @@ public class Graphic extends JFrame {
         } 
       }
       buttonPanel = new JPanel(); 
-      //buttonPanel.add(messageUpperCard);
+      buttonPanel.add(new JLabel("Your choice"));
       for(int i = 0; i < myButtons.size(); ++i)
           buttonPanel.add(myButtons.get(i));
      

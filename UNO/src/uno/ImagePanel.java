@@ -44,7 +44,7 @@ public class ImagePanel extends JPanel{
     //drawing hand
     for(int i=0;i<images.size();i++)
     {
-        g.drawImage(images.get(i), getWidth()*(i+1)/images.size(), getHeight()/2, this);
+        g.drawImage(images.get(i), getWidth()*(i)/images.size(), getHeight()/2, this);
     }
     repaint();
   }
