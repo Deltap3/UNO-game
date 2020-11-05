@@ -73,9 +73,9 @@ public class Game {
                 str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
                 numberOfPlayers = Integer.parseInt(str);
                 if(numberOfPlayers < 1 || numberOfPlayers > 10)
-                    throw new Error("Can't have this number of players");
+                    throw new IllegalArgumentException("Can't have this number of players");
             }
-            catch(Error e){
+            catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
@@ -89,9 +89,9 @@ public class Game {
                     str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
                     numberOfAI = Integer.parseInt(str);
                     if(numberOfAI < 0 || numberOfAI > maxNumberOfAI)
-                        throw new Error("Can't have this number of AI");
+                        throw new IllegalArgumentException("Can't have this number of AI");
                 }
-                catch(Error e){
+                catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
