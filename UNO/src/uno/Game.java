@@ -82,7 +82,7 @@ public class Game {
             do{
                 str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
                 numberOfAI = Integer.parseInt(str);
-                if(numberOfAI < 1 || numberOfAI > 10)
+                if(numberOfAI < 0 || numberOfAI > maxNumberOfAI)
                     throw new Error("Can't have this number of AI");
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
         }

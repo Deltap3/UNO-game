@@ -95,16 +95,16 @@ public class WildCard implements Card{
         newColour = choice;
         switch(newColour){
             case 1:
-                System.out.println("The new colour is Red");
+                JOptionPane.showMessageDialog(null,"The new colour is Red");
                 break;
             case 2:
-                System.out.println("The new colour is Blue");
+                JOptionPane.showMessageDialog(null,"The new colour is Blue");
                 break;
             case 3:
-                System.out.println("The new colour is Green");
+                JOptionPane.showMessageDialog(null,"The new colour is Green");
                 break;
             case 4:
-                System.out.println("The new colour is Yellow");
+                JOptionPane.showMessageDialog(null,"The new colour is Yellow");
                 break;
         }
     }
@@ -112,16 +112,16 @@ public class WildCard implements Card{
         newColour = colour;
         switch(newColour){
             case 1:
-                System.out.println("The new colour is Red");
+                JOptionPane.showMessageDialog(null,"The new colour is Red");
                 break;
             case 2:
-                System.out.println("The new colour is Blue");
+                JOptionPane.showMessageDialog(null,"The new colour is Blue");
                 break;
             case 3:
-                System.out.println("The new colour is Green");
+                JOptionPane.showMessageDialog(null,"The new colour is Green");
                 break;
             case 4:
-                System.out.println("The new colour is Yellow");
+                JOptionPane.showMessageDialog(null,"The new colour is Yellow");
                 break;
         }
     }

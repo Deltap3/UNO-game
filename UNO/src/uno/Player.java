@@ -104,6 +104,8 @@ public class Player {
             }
             counter++;
         } while (!stop);
+        JOptionPane.showMessageDialog(null,"\nAI" + (AInumber + 1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]"
+                +"\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
         if (play) {
             if (hand.get(playedCard).getSymbol() != 'W' && hand.get(playedCard).getSymbol() != '+') {
                 hand.get(playedCard).play(g);
@@ -116,8 +118,6 @@ public class Player {
             }
             g.returnToDeck(g.getUpperCard());
             g.setUpperCard(hand.get(playedCard));
-            JOptionPane.showMessageDialog(null,"\nAI" + (AInumber + 1) + " played : [" + hand.get(playedCard).displayColour() + hand.get(playedCard).getSymbol() + "]"
-            +"\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
             hand.remove(playedCard);
         }
         System.out.println("\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
