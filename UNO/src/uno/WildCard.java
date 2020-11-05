@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
  *
@@ -70,12 +71,27 @@ public class WildCard implements Card{
     public void play(Game g){
         
         String str;
-        int choice;
+        Integer choice=0;
+        JFrame colorFrame= new JFrame("color choice");
+        ColorChoicePanel colorPanel=new ColorChoicePanel(choice);
+        colorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        colorFrame.add(colorPanel);
+        colorFrame.pack();
+        colorFrame.setVisible(true);
+        
         do{
-            str=JOptionPane.showInputDialog("Call the next color: \n"+
-                "1 - Red ; 2 - Blue ; 3 - Green ; 4 - Yellow");
-            choice = Integer.parseInt(str);
+            choice=colorPanel.getColorChoice();
+            try
+            {
+                Thread.sleep(500);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
         }while(choice < 1 || choice > 4);
+        colorFrame.dispose();
+        
         newColour = choice;
         switch(newColour){
             case 1:

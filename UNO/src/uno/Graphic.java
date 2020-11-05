@@ -31,7 +31,7 @@ public class Graphic extends JFrame {
       setTitle("Player" + (play.getNumber()+1) + " turn");
       setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       setBackground(Color.WHITE);
+      setBackground(Color.WHITE);
       imagePanel=new ImagePanel(g, play);
       buildButtonPanel(g,play);
       this.setLayout(new BorderLayout());
@@ -50,7 +50,6 @@ public class Graphic extends JFrame {
    private void buildButtonPanel(Game g, Player play)
    {
      
-      Card prevChosenCard = play.getChosenCard();
       ArrayList<MyButton> myButtons=new ArrayList<>();
       ButtonGroup group = new ButtonGroup();
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
