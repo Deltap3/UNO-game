@@ -69,10 +69,18 @@ public class Game {
         //System.out.println("How many human players are they for this game ? (1 players minumum and 10 maximum)");
         //Scanner keyboard = new Scanner(System.in);
         do{
+            try{
             str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
+            if(str.isEmpty())
+                throw new IllegalArgumentException("please enter the number of players");
             numberOfPlayers = Integer.parseInt(str);
             if(numberOfPlayers < 1 || numberOfPlayers > 10)
-                throw new Error("Can't have this number of players");
+                throw new IllegalArgumentException("Can't have this number of players");
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage(),"",JOptionPane.ERROR_MESSAGE);
+            }
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
         
         int maxNumberOfAI=10-numberOfPlayers;
@@ -80,10 +88,18 @@ public class Game {
         {
             //System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
             do{
+                try{
                 str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
+                if(str.isEmpty())
+                    throw new IllegalArgumentException("please enter the number of AI");
                 numberOfAI = Integer.parseInt(str);
                 if(numberOfAI < 0 || numberOfAI > maxNumberOfAI)
-                    throw new Error("Can't have this number of AI");
+                    throw new IllegalArgumentException("Can't have this number of AI");
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
+                }
             }while(numberOfAI < 0 || numberOfAI > maxNumberOfAI);
         }
         for(int i = 0; i < numberOfPlayers+numberOfAI; ++i){
