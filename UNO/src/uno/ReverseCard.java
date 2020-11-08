@@ -1,28 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    UNO GAME
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 package uno;
 
 import javax.swing.JOptionPane;
 
-/*
-    Juliette DANIEL et Pierre MAISTERRENA
-    ING3 ex ING2 TDE02
- */
+
 //a reverse card is a numbercard that
 //can reverse the playing order
 public class ReverseCard extends NumberCard{
 
+    //constructor
     public ReverseCard(int myColour, char mySymbol) {
+        //uses the NumberCard constructor
         super(myColour,mySymbol,20);
     }
 
-
+    //overriden play method
     @Override
     public void play(Game g){
-        g.reverse();
+        
+        g.reverse();//reverse the playing order
+        //inform user of the change
         JOptionPane.showMessageDialog(null, "Playing order has been reversed");
     }
 }

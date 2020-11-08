@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    UNO GAME
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 package uno;
 
@@ -11,21 +11,23 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/*
-    Juliette DANIEL et Pierre MAISTERRENA
-    ING3 ex ING2 TDE02
- */
+
+
 //a wild card is a special card 
 //that can be played on any card
 //and can change the active color
 //of the game
 public class WildCard implements Card{
-    private final int myColour;
-    private final char mySymbol;
-    private int cardValue;
-    private int newColour;
-    private BufferedImage pic=null;
     
+    //attributes
+    private final int myColour;//card color
+    private final char mySymbol;//card symbol
+    private int cardValue;//card value (at the end of the game)
+    private int newColour;//color called after the card is played
+    private BufferedImage pic=null;//image of the card
+    
+    //constructors
+    //default constructor
     public WildCard()
     {
         this.myColour=0;
@@ -34,15 +36,25 @@ public class WildCard implements Card{
         loadImage("wild.jpg");
         
     }
+    //constructor used to define a "special" wild card
+    //(wild draw card)
     public WildCard(int myColour, char mySymbol, String name) {
         this.myColour = myColour;
         this.mySymbol = mySymbol;
         this.cardValue=50;
         loadImage(name);
     }
+    
+    //methods of the Card interface:
+    
+    //return true if you can play on said card
+    //however, wild cards are special cards that you
+    //can play at anytime
+    //therefore, it will always return true
     public boolean canPlayOn(Card c){
         return true;
     }
+    //accessors
     public int getColour(){
         return myColour;
     }
@@ -56,14 +68,21 @@ public class WildCard implements Card{
     public int getNewColour(){
         return newColour;
     }
-    public String displayColour(){
-        
-        return "";
-    }
     public BufferedImage getPicture()
     {
         return pic;
     }
+    
+    //display the card 's color
+    //as wildcards are special cards,
+    //they don't have a color
+    //therefore the String returned is empty
+    public String displayColour(){
+        
+        return "";
+    }
+    
+    //used to load the image of a card
     private void loadImage(String name)
     {
         try{
@@ -74,17 +93,22 @@ public class WildCard implements Card{
             System.out.println("couldn't load image "+name);
         }
     }
+    //used when the card is played
+    //it will display a color panel 
+    //so that the user can call the new color
     public void play(Game g){
         
-        String str;
-        Integer choice=0;
-        JFrame colorFrame= new JFrame("color choice");
-        ColorChoicePanel colorPanel=new ColorChoicePanel(choice);
+        Integer choice=0;//store user choice
+        //implementation of the color display
+        JFrame colorFrame= new JFrame("color choice");//creates the frame
+        ColorChoicePanel colorPanel=new ColorChoicePanel(choice);//creates the panel
+        colorFrame.add(colorPanel);//add panel to frame
+        //setup frame
         colorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        colorFrame.add(colorPanel);
         colorFrame.pack();
         colorFrame.setVisible(true);
         
+        //wait for user choice
         do{
             choice=colorPanel.getColorChoice();
             try
@@ -95,10 +119,14 @@ public class WildCard implements Card{
             {
                 Thread.currentThread().interrupt();
             }
-        }while(choice < 1 || choice > 4);
+        }while(choice < 1 );
+        
+        //dispose of the color frame after use
         colorFrame.dispose();
         
+        //set the new color
         newColour = choice;
+        //inform of the color change
         switch(newColour){
             case 1:
                 JOptionPane.showMessageDialog(null,"The new colour is Red");
@@ -114,8 +142,12 @@ public class WildCard implements Card{
                 break;
         }
     }
+    //used when the card is played
+    //it will set the new color to the one in the parameters
     public void play(Game g, int colour){
+        //set the new color
         newColour = colour;
+        //inform of the color change
         switch(newColour){
             case 1:
                 JOptionPane.showMessageDialog(null,"The new colour is Red");
