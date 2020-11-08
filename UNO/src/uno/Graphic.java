@@ -69,6 +69,7 @@ public class Graphic extends JFrame {
                
            }
        }
+       
    }
    private void buildButtonPanel(Game g, Player play)
    {

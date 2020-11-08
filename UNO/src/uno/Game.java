@@ -158,7 +158,6 @@ public class Game {
         
         do{
             JOptionPane.showMessageDialog(null, "Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
-            //System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
             if(i < numberOfPlayers)
             {
                 
