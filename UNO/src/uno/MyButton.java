@@ -1,24 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    UNO GAME
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 package uno;
 
 import java.awt.Color;
 import javax.swing.JRadioButton;
 
-/*
-    Juliette DANIEL et Pierre MAISTERRENA
-    ING3 ex ING2 TDE02
- */
+//custom button class
+//each MyButton corresponds to a said card
 public class MyButton extends JRadioButton{
+    //attributes
     private Card buttonCard;
+    //constructor
     public MyButton(Card myCard)
     {
         super(""+myCard.getSymbol());
         buttonCard = myCard;
         int col=myCard.getColour();
+        //set the button's color to the same as the card it represents
             switch(col)
             {
                 case 1: //red
@@ -47,6 +48,7 @@ public class MyButton extends JRadioButton{
             }
           this.setOpaque(true);
     }
+    //accessor
     public Card getCard()
     {
         return buttonCard;

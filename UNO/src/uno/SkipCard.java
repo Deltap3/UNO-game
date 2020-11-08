@@ -1,26 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package uno;
-
-/*
+    UNO GAME
     Juliette DANIEL et Pierre MAISTERRENA
     ING3 ex ING2 TDE02
  */
+package uno;
+
+
 //a skip card is a number card 
-//that can skip the next player
+//that can skip the next player's turn
 public class SkipCard extends NumberCard{
 
-    
+    //constructor
     public SkipCard(int myColour, char mySymbol) {
+        //uses the NumberCard constructor
         super(myColour,mySymbol,20);
+        
     }
 
-
+    //overriden play method
     @Override
     public void play(Game g){
-        g.skip();
+        g.skip();//skip next player's turn
     }
 }
