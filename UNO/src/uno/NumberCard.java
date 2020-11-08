@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 //"basic" card class
 //has no special effect when played
@@ -39,6 +39,7 @@ public class NumberCard implements Card{
             System.out.println("couldn't load image "+name);
         }
     }
+    //return true if the card can be played and false either
     public boolean canPlayOn(Card c){
         if(c.getSymbol() == 'W'){
             WildCard card = (WildCard)c;
@@ -78,6 +79,7 @@ public class NumberCard implements Card{
         }
         return "";
     }
+    //no effetcs when played
     public void play(Game g){
         
     }

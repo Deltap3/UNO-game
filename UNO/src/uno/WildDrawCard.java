@@ -5,12 +5,9 @@
  */
 package uno;
 
-import java.util.Scanner;
-import javax.swing.JOptionPane;
-
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 //a wild draw card is a wild card
 //that makes the next player

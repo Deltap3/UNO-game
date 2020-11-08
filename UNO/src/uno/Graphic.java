@@ -17,9 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 public class Graphic extends JFrame {
    private JPanel buttonPanel;
@@ -28,7 +28,6 @@ public class Graphic extends JFrame {
    private Card chosenCard;
    private final int WINDOW_WIDTH = 1200;
    private final int WINDOW_HEIGHT = 1400;
-   
    public Graphic(Game g, Player play)
    {
       setTitle("Player" + (play.getNumber()+1) + " turn");
@@ -71,6 +70,7 @@ public class Graphic extends JFrame {
        }
        
    }
+   //manage all buttons during the player's choice
    private void buildButtonPanel(Game g, Player play)
    {
      
@@ -91,6 +91,7 @@ public class Graphic extends JFrame {
           buttonPanel.add(myButtons.get(i));
      
    }
+   //this is the listeners for our buttons
    private class RadioButtonListener implements ActionListener
    {
       private Player player;
