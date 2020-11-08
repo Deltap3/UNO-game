@@ -31,5 +31,6 @@ public class UNO {
         }while (retry!=JOptionPane.NO_OPTION);
         
         g.displayScores();
+        System.exit(0);
     }
 }
