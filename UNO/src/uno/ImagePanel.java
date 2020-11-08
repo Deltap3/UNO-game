@@ -6,15 +6,13 @@
 package uno;
 
 import javax.swing.*;
-import java.io.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.util.ArrayList;
-import javax.imageio.*;
 
-/**
- *
- * @author Juju
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 public class ImagePanel extends JPanel{
    

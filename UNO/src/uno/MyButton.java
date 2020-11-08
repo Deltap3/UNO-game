@@ -6,14 +6,11 @@
 package uno;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-/**
- *
- * @author Juju
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 public class MyButton extends JRadioButton{
     private Card buttonCard;

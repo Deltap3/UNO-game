@@ -5,9 +5,9 @@
  */
 package uno;
 
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 //a skip card is a number card 
 //that can skip the next player

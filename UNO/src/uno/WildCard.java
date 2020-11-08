@@ -5,16 +5,15 @@
  */
 package uno;
 
-//import java.util.Scanner;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 //a wild card is a special card 
 //that can be played on any card

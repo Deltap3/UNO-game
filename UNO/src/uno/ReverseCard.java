@@ -7,9 +7,9 @@ package uno;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 //a reverse card is a numbercard that
 //can reverse the playing order

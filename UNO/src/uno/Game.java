@@ -7,26 +7,25 @@ package uno;
 
 import java.util.ArrayList;
 import java.util.Collections;
-//import java.util.List;
-//import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author maist
+/*
+    Juliette DANIEL et Pierre MAISTERRENA
+    ING3 ex ING2 TDE02
  */
 public class Game {
     private int numberOfPlayers;
     private int numberOfAI;
     private int nbDraw;
     private Card upperCard;
+    //this boolean are true when a draw, reverse or skip card is played
+    // and then they become false until they're played again
     private boolean reversed;
     private boolean drew;
     private boolean skipped;
     private ArrayList<Player> playerList = new ArrayList<Player>();
     private ArrayList<Card> deck = new ArrayList<Card>();
-    
-    
+    //create the deck with all the cards
     public Game() {
         for(int i = 0; i < 4; ++i)
             deck.add(new WildCard());
@@ -62,6 +61,7 @@ public class Game {
     {
         return playerList;
     }
+    //shuffle the deck
     public void shuffle(){
         for(int i = 0; i < 10 ; ++i)
             Collections.shuffle(deck);
@@ -69,20 +69,19 @@ public class Game {
     public Player getPLayer(int i){
         return playerList.get(i);
     }
+    //setup the game (define the number of players and AI)
+    //and give them the 7 first cards in their hands
     public void playersSetUp()
     {
         String str;
-        //System.out.println("How many human players are they for this game ? (1 players minumum and 10 maximum)");
-        //Scanner keyboard = new Scanner(System.in);
         do{
             try{
-
-            str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
-            if(str.isEmpty())
-                throw new IllegalArgumentException("please enter the number of players");
-            numberOfPlayers = Integer.parseInt(str);
-            if(numberOfPlayers < 1 || numberOfPlayers > 10)
-                throw new IllegalArgumentException("Can't have this number of players");
+                str=JOptionPane.showInputDialog("How many human players are they for this game ? (1 players minumum and 10 maximum)");
+                if(str.isEmpty())
+                    throw new IllegalArgumentException("please enter the number of players");
+                numberOfPlayers = Integer.parseInt(str);
+                if(numberOfPlayers < 1 || numberOfPlayers > 10)
+                    throw new IllegalArgumentException("Can't have this number of players");
             }
             catch(Exception e)
             {
@@ -90,20 +89,17 @@ public class Game {
 
             }
         }while(numberOfPlayers < 1 || numberOfPlayers > 10);
-        
         int maxNumberOfAI=10-numberOfPlayers;
         if(maxNumberOfAI>0)
         {
-            //System.out.println("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
             do{
                 try{
-
-                str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
-                if(str.isEmpty())
-                    throw new IllegalArgumentException("please enter the number of AI");
-                numberOfAI = Integer.parseInt(str);
-                if(numberOfAI < 0 || numberOfAI > maxNumberOfAI)
-                    throw new IllegalArgumentException("Can't have this number of AI");
+                    str=JOptionPane.showInputDialog("How many AI  are they for this game ? (0 AI minumum and "+ maxNumberOfAI+" maximum)");
+                    if(str.isEmpty())
+                        throw new IllegalArgumentException("please enter the number of AI");
+                    numberOfAI = Integer.parseInt(str);
+                    if(numberOfAI < 0 || numberOfAI > maxNumberOfAI)
+                        throw new IllegalArgumentException("Can't have this number of AI");
                 }
                 catch(Exception e)
                 {
@@ -117,13 +113,12 @@ public class Game {
         }
     }
     public void setup(){
-       //deals the cards
+       //deals the cards to all players and AI
         for(int i = 0; i < playerList.size(); ++i){
             for(int j = 0; j < 7; ++j){
                 playerList.get(i).draw(this,1);
             }
         }
-        //set up the first up front card
         drawInitialCard();
     }
     public ArrayList<Card> getDeck(){
@@ -133,7 +128,7 @@ public class Game {
     {
         deck.add(usedCard);
     }
-    
+    //set up the first up front card
     private void drawInitialCard(){
         int i = 0;
         while(deck.get(i).getSymbol() == 'W' || deck.get(i).getSymbol() == '+')
@@ -141,7 +136,6 @@ public class Game {
         upperCard = deck.get(i);
         deck.remove(i);
     }
-    
     public void reverse(){
         reversed = !reversed;
     }
@@ -152,21 +146,18 @@ public class Game {
     public void skip(){
         skipped = !skipped;
     }
+    //manage all the game turns and the playing order and skips
     public void start(){
         boolean AIwin = false,playerWin = false;
         int i = 0;
-        
         do{
             JOptionPane.showMessageDialog(null, "Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
-            //System.out.println("Upper Card : ["+upperCard.displayColour()+upperCard.getSymbol()+"]");
             if(i < numberOfPlayers)
             {
-                
                 playerWin = playerList.get(i).playTurnPlayer(this);
                 if(playerWin)
                     playerList.get(i).setScore(playerList.get(i).getScore()+computeScore());
             }
-                
             else
             {
                 AIwin = playerList.get(i).playTurnAI(this);
@@ -183,7 +174,6 @@ public class Game {
                 else
                     i++;
                 skip();
-                
             }
             if(i < 0)
                 i = playerList.size()-1;
@@ -201,9 +191,7 @@ public class Game {
         if(AIwin)
             JOptionPane.showMessageDialog(null,"\nThe AI won and you have lost");
         else 
-            JOptionPane.showMessageDialog(null, "\nCongratulations you have won !");
-        
-        
+            JOptionPane.showMessageDialog(null, "\nCongratulations you have won !"); 
     }
     public void afterGame()
     {
