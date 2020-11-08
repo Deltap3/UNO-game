@@ -8,6 +8,7 @@ package uno;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,10 +23,12 @@ import javax.swing.JPanel;
  */
 public class Graphic extends JFrame {
    private JPanel buttonPanel;
+   private JPanel adversariesPanel;
    private ImagePanel imagePanel;
    private Card chosenCard;
    private final int WINDOW_WIDTH = 1200;
    private final int WINDOW_HEIGHT = 1400;
+   
    public Graphic(Game g, Player play)
    {
       setTitle("Player" + (play.getNumber()+1) + " turn");
@@ -34,8 +37,9 @@ public class Graphic extends JFrame {
       setBackground(Color.WHITE);
       imagePanel=new ImagePanel(g, play);
       buildButtonPanel(g,play);
+       buildAdversariesPanel(g, play);
       this.setLayout(new BorderLayout());
-      add(new JLabel("Player" + (play.getNumber()+1) + " turn"),BorderLayout.NORTH);
+      add(adversariesPanel,BorderLayout.NORTH);
       add(imagePanel, BorderLayout.CENTER);
       add(buttonPanel, BorderLayout.EAST);
       pack();
@@ -46,6 +50,25 @@ public class Graphic extends JFrame {
    }
    public Card getChosenCard(){
        return chosenCard;
+   }
+   private void buildAdversariesPanel(Game g, Player play)
+   {
+       adversariesPanel= new JPanel();
+       adversariesPanel.setLayout(new FlowLayout());
+       for(Player p: g.getPlayerList())
+       {
+           if(p==play)
+           {}
+           else
+           {
+               JPanel advers= new JPanel();
+               advers.setBackground(Color.WHITE);
+               advers.add(new JLabel("player "+(p.getNumber()+1)));
+               advers.add(new JLabel(" ( "+p.getHand().size()+" ) "));
+               adversariesPanel.add(advers);
+               
+           }
+       }
    }
    private void buildButtonPanel(Game g, Player play)
    {

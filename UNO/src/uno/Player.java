@@ -120,7 +120,7 @@ public class Player {
             g.setUpperCard(hand.get(playedCard));
             hand.remove(playedCard);
         }
-        System.out.println("\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
+        //System.out.println("\nAI" + (AInumber+1) + " got " + hand.size() + " cards in his hand\n");
         counter = 0;
         if (hand.size() == 0) {
             return true;

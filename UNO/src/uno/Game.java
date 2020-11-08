@@ -25,6 +25,8 @@ public class Game {
     private boolean skipped;
     private ArrayList<Player> playerList = new ArrayList<Player>();
     private ArrayList<Card> deck = new ArrayList<Card>();
+    
+    
     public Game() {
         for(int i = 0; i < 4; ++i)
             deck.add(new WildCard());
@@ -55,6 +57,10 @@ public class Game {
     }
     public Card getUpperCard(){
         return upperCard;
+    }
+    public ArrayList<Player> getPlayerList()
+    {
+        return playerList;
     }
     public void shuffle(){
         for(int i = 0; i < 10 ; ++i)
